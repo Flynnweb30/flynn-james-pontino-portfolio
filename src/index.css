@@ -269,3 +269,14 @@
 }
 .interactive-lift:hover { transform: translateY(-2px); }
 
+
+
+/* Responsive utility safeguards for compact screens. */
+@media (max-width: 640px) {
+  .section-photo { --section-overlay-top: 0.52; --section-overlay-mid: 0.62; --section-overlay-bottom: 0.90; }
+  .section-photo::before { inset: -5%; }
+  .section-photo::after { background: linear-gradient(180deg, rgba(11,15,25,0.48) 0%, rgba(11,15,25,0.68) 52%, rgba(11,15,25,0.92) 100%); }
+  .breadcrumb-mobile-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .breadcrumb-mobile-scroll::-webkit-scrollbar { display: none; }
+  .touch-target { min-height: 44px; min-width: 44px; }
+}

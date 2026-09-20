@@ -16,6 +16,10 @@ import { ExperiencePage } from './pages/ExperiencePage';
 import { CaseStudiesPage } from './pages/CaseStudiesPage';
 import { SamplesPage } from './pages/SamplesPage';
 import { ContactPage } from './pages/ContactPage';
+import { ServicePage } from './pages/ServicePage';
+import { Breadcrumbs } from './components/Breadcrumbs';
+import { SERVICE_PAGES } from './data/servicePages';
+import { SITE_URL } from './hooks/useSEO';
 
 const pageVariants = {
   initial: { opacity: 0, y: 12 },
@@ -58,19 +62,32 @@ export default function App() {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [contactServicePreselect, setContactServicePreselect] = useState<string | undefined>(undefined);
+  const [currentServiceSlug, setCurrentServiceSlug] = useState<string | null>(null);
 
-  const pageFromLocation = useCallback((): PageId => {
+  const readLocation = useCallback((): { page: PageId; serviceSlug: string | null } => {
     const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
-    if (VALID_PAGES.includes(path as PageId)) return path as PageId;
+    const serviceMatch = path.match(/^services\/([^/]+)$/);
+    if (serviceMatch && SERVICE_PAGES[serviceMatch[1]]) {
+      return { page: 'services', serviceSlug: serviceMatch[1] };
+    }
+    if (VALID_PAGES.includes(path as PageId)) return { page: path as PageId, serviceSlug: null };
 
     // Keep existing hash URLs working for bookmarks/shared links from older builds.
     const hash = window.location.hash.replace('#/', '').replace('#', '').replace(/^\/+|\/+$/g, '');
-    if (VALID_PAGES.includes(hash as PageId)) return hash as PageId;
-    return 'home';
+    const hashServiceMatch = hash.match(/^services\/([^/]+)$/);
+    if (hashServiceMatch && SERVICE_PAGES[hashServiceMatch[1]]) {
+      return { page: 'services', serviceSlug: hashServiceMatch[1] };
+    }
+    if (VALID_PAGES.includes(hash as PageId)) return { page: hash as PageId, serviceSlug: null };
+    return { page: 'home', serviceSlug: null };
   }, []);
 
   useEffect(() => {
-    const handleLocationChange = () => setCurrentPage(pageFromLocation());
+    const handleLocationChange = () => {
+      const location = readLocation();
+      setCurrentPage(location.page);
+      setCurrentServiceSlug(location.serviceSlug);
+    };
     handleLocationChange();
     window.addEventListener('popstate', handleLocationChange);
     window.addEventListener('hashchange', handleLocationChange);
@@ -78,7 +95,7 @@ export default function App() {
       window.removeEventListener('popstate', handleLocationChange);
       window.removeEventListener('hashchange', handleLocationChange);
     };
-  }, [pageFromLocation]);
+  }, [readLocation]);
 
   const navigate = useCallback((page: PageId) => {
     const path = page === 'home' ? '/' : `/${page}`;
@@ -86,6 +103,18 @@ export default function App() {
       window.history.pushState({}, '', path);
     }
     setCurrentPage(page);
+    setCurrentServiceSlug(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const navigateService = useCallback((slug: string) => {
+    if (!SERVICE_PAGES[slug]) return;
+    const path = `/services/${slug}`;
+    if (window.location.pathname !== path || window.location.hash) {
+      window.history.pushState({}, '', path);
+    }
+    setCurrentPage('services');
+    setCurrentServiceSlug(slug);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -97,9 +126,23 @@ export default function App() {
     [navigate],
   );
 
-  const seo = SEO_CONFIGS[PAGE_TO_SEO_KEY[currentPage]];
-  const pageBreadcrumb =
-    currentPage !== 'home'
+  const activeServicePage = currentServiceSlug ? SERVICE_PAGES[currentServiceSlug] : null;
+  const seo = activeServicePage
+    ? {
+        title: `${activeServicePage.h1} | Flynn James`,
+        description: activeServicePage.description,
+        canonical: `/services/${activeServicePage.slug}`,
+        keywords: `${activeServicePage.title}, B2B ${activeServicePage.title.toLowerCase()}, Flynn James, outbound sales`,
+      }
+    : SEO_CONFIGS[PAGE_TO_SEO_KEY[currentPage]];
+
+  const pageBreadcrumb = activeServicePage
+    ? [
+        { name: 'Home', url: '/' },
+        { name: 'Services', url: '/services' },
+        { name: activeServicePage.title, url: `/services/${activeServicePage.slug}` },
+      ]
+    : currentPage !== 'home'
       ? [
           { name: 'Home', url: '/' },
           { name: BREADCRUMB_LABELS[currentPage], url: `/${currentPage}` },
@@ -114,7 +157,7 @@ export default function App() {
           '@type': 'ListItem',
           position: i + 1,
           name: b.name,
-          item: `https://flynnjamespontino-porfolio.onrender.com${b.url}`,
+          item: `${SITE_URL}${b.url}`,
         })),
       }
     : undefined;
@@ -124,7 +167,7 @@ export default function App() {
     description: seo.description,
     canonical: seo.canonical,
     keywords: seo.keywords,
-    ogType: currentPage === 'home' ? 'website' : 'article',
+    ogType: activeServicePage ? 'article' : currentPage === 'home' ? 'website' : 'article',
     jsonLd: breadcrumbSchema,
   });
 
@@ -143,7 +186,19 @@ export default function App() {
       case 'about':
         return <AboutPage onNavigate={navigate} onOpenContact={navigateToContact} />;
       case 'services':
-        return <ServicesPage onSelectService={setSelectedService} onOpenContact={navigateToContact} />;
+        return activeServicePage ? (
+          <ServicePage
+            service={activeServicePage}
+            onOpenContact={navigateToContact}
+            onNavigateService={navigateService}
+          />
+        ) : (
+          <ServicesPage
+            onSelectService={setSelectedService}
+            onOpenContact={navigateToContact}
+            onNavigateService={navigateService}
+          />
+        );
       case 'experience':
         return <ExperiencePage onNavigate={navigate} onOpenContact={navigateToContact} />;
       case 'case-studies':
@@ -169,10 +224,16 @@ export default function App() {
     <div className="min-h-screen text-slate-100 flex flex-col font-sans antialiased">
       <Navbar currentPage={currentPage} onNavigate={navigate} onOpenContact={() => navigateToContact()} />
 
+      {pageBreadcrumb && (
+        <div className="pt-20 lg:pt-20">
+          <Breadcrumbs items={pageBreadcrumb} onNavigate={navigate} onNavigateService={navigateService} />
+        </div>
+      )}
+
       <main className="flex-1">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentPage}
+            key={`${currentPage}-${currentServiceSlug || ''}`}
             initial="initial"
             animate="animate"
             exit="exit"

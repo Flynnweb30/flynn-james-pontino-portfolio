@@ -4,7 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const dist = path.join(root, 'dist');
 const site = 'https://flynnjamespontino-porfolio.onrender.com';
-const required = ['index.html', 'sitemap.xml', 'robots.txt', 'favicon.svg'];
+const required = ['index.html', 'sitemap.xml', 'robots.txt', 'favicon.svg', 'assets/app.js', 'assets/style.min.css'];
 
 if (!fs.existsSync(dist)) throw new Error('Build output directory "dist" was not created.');
 
@@ -21,8 +21,13 @@ if (!sitemap.includes('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.
 if (!sitemap.endsWith('</urlset>')) throw new Error('sitemap.xml is not closed with </urlset>.');
 
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-if (locs.length !== 7) throw new Error(`Expected 7 sitemap URLs, found ${locs.length}.`);
+if (locs.length !== 14) throw new Error(`Expected 14 sitemap URLs, found ${locs.length}.`);
 if (new Set(locs).size !== locs.length) throw new Error('sitemap.xml contains duplicate URLs.');
+const requiredServicePaths = ['/services/appointment-setting', '/services/cold-calling', '/services/lead-generation', '/services/sdr-services', '/services/digital-marketing-appointment-setting', '/services/sales-development', '/services/sales-coaching'];
+for (const servicePath of requiredServicePaths) {
+  if (!locs.includes(`${site}${servicePath}`)) throw new Error(`Sitemap is missing service URL: ${servicePath}`);
+}
+
 for (const url of locs) {
   if (!url.startsWith(site)) throw new Error(`Sitemap URL is outside the production domain: ${url}`);
   if (/[?#]/.test(url)) throw new Error(`Sitemap URL contains a query string or fragment: ${url}`);

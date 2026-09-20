@@ -7,13 +7,15 @@ import { SectionHeading } from '../components/SectionHeading';
 import { CORE_SERVICES } from '../data/portfolioData';
 import { ServiceItem } from '../types';
 import { Button } from '../components/Button';
+import { SERVICE_PAGES } from '../data/servicePages';
 
 interface ServicesPageProps {
   onSelectService: (s: ServiceItem) => void;
   onOpenContact: (serviceName?: string) => void;
+  onNavigateService: (slug: string) => void;
 }
 
-export const ServicesPage: React.FC<ServicesPageProps> = ({ onSelectService, onOpenContact }) => {
+export const ServicesPage: React.FC<ServicesPageProps> = ({ onSelectService, onOpenContact, onNavigateService }) => {
   const [active, setActive] = useState<string>(CORE_SERVICES[0].id);
   const activeService = CORE_SERVICES.find((s) => s.id === active) || CORE_SERVICES[0];
 
@@ -184,6 +186,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onSelectService, onO
                 <Button variant="secondary" onClick={() => onSelectService(activeService)} withArrow className="group">
                   Full deliverables
                 </Button>
+                <button
+                  type="button"
+                  onClick={() => onNavigateService(SERVICE_PAGES[activeService.id] ? activeService.id : activeService.id === 'sdr-support' ? 'sdr-services' : 'sales-development')}
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-[12.5px] font-medium text-slate-300 hover:text-white rounded-md border border-slate-700/70 hover:border-slate-500 transition-colors"
+                >
+                  Service page <span aria-hidden="true">↗</span>
+                </button>
               </div>
             </motion.article>
           </div>

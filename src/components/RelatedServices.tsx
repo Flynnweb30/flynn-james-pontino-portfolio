@@ -4,7 +4,7 @@ import { SERVICE_PAGES } from '../data/servicePages';
 
 interface RelatedServicesProps {
   slugs: string[];
-  onNavigate: (path: string) => void;
+  onNavigate: (slug: string) => void;
 }
 
 export const RelatedServices: React.FC<RelatedServicesProps> = ({ slugs, onNavigate }) => {
@@ -29,7 +29,7 @@ export const RelatedServices: React.FC<RelatedServicesProps> = ({ slugs, onNavig
           {related.map((service) => (
             <button
               key={service.slug}
-              onClick={() => onNavigate(`/services/${service.slug}`)}
+              onClick={() => onNavigate(service.slug)}
               className="group text-left bg-white hover:bg-slate-50 p-6 transition-colors"
             >
               <div className="flex items-start justify-between mb-4">
