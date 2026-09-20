@@ -48,7 +48,7 @@ export const SEO_DATA: Record<string, SEOMetadata> = {
   },
   blog: {
     title: 'B2B SDR Blog | Cold Calling, Appointment Setting & Outbound Sales',
-    description: 'Practical B2B sales insights from Flynn James on cold calling, appointment setting, SDR metrics, outbound cadences, meeting quality, and hiring setters.',
+    description: 'Practical B2B sales insights from Flynn James on appointment setting, cold calling, qualified meetings, SDR metrics, outbound cadences, show rates, and hiring setters.',
     canonical: `${SITE_URL}/blog`,
     ogImage: DEFAULT_OG,
     ogType: 'website',

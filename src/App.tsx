@@ -121,7 +121,7 @@ export default function App() {
   const seo = blogPost
     ? {
         title: `${blogPost.title} | Flynn James B2B Sales Blog`,
-        description: blogPost.excerpt,
+        description: blogPost.metaDescription || blogPost.excerpt,
         canonical: `/blog/${blogPost.slug}`,
         keywords: blogPost.keywords.join(', '),
         ogType: 'article',

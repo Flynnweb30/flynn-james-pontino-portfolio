@@ -355,6 +355,21 @@
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
+.prose-flynn h3 {
+  color: rgb(241 245 249);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.35;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.7rem;
+}
+.article-visual img {
+  transition: transform 500ms ease, opacity 300ms ease;
+}
+.article-visual:hover img { transform: scale(1.015); opacity: 0.92; }
+@media (prefers-reduced-motion: reduce) {
+  .article-visual img { transition: none; }
+}
 .prose-flynn p { margin-top: 1rem; }
 .prose-flynn ul:not(.list-none) {
   margin: 1.25rem 0 0;
