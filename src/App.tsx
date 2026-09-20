@@ -6,7 +6,6 @@ import { CaseStudyModal } from './components/CaseStudyModal';
 import { WorkSampleModal } from './components/WorkSampleModal';
 import { ServiceDetailModal } from './components/ServiceDetailModal';
 import { Toast } from './components/Toast';
-import { Breadcrumbs } from './components/Breadcrumbs';
 import { CaseStudy, WorkSample, ServiceItem, PageId } from './types';
 import { useSEO, SEO_CONFIGS } from './hooks/useSEO';
 
@@ -115,7 +114,7 @@ export default function App() {
           '@type': 'ListItem',
           position: i + 1,
           name: b.name,
-          item: `https://flynnjames.com${b.url}`,
+          item: `https://flynnjamespontino-porfolio.onrender.com${b.url}`,
         })),
       }
     : undefined;
@@ -169,8 +168,6 @@ export default function App() {
   return (
     <div className="min-h-screen text-slate-100 flex flex-col font-sans antialiased">
       <Navbar currentPage={currentPage} onNavigate={navigate} onOpenContact={() => navigateToContact()} />
-
-      <Breadcrumbs items={pageBreadcrumb} onNavigate={navigate} />
 
       <main className="flex-1">
         <AnimatePresence mode="wait">

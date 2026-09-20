@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { PageHeader } from '../components/PageHeader';
-import { Breadcrumbs, breadcrumbSchema } from '../components/Breadcrumbs';
+import { breadcrumbSchema } from '../components/Breadcrumbs';
 import { Section } from '../components/Section';
 
 export const PrivacyPage: React.FC = () => {
@@ -12,7 +12,6 @@ export const PrivacyPage: React.FC = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema(crumbs)) }}
       />
-      <Breadcrumbs crumbs={crumbs} />
       <PageHeader
         index=""
         eyebrow="Privacy"

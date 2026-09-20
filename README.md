@@ -28,6 +28,12 @@ npm run build
 
 The production bundle is written to `dist/`.
 
+Production URL: `https://flynnjamespontino-porfolio.onrender.com/`
+
+XML sitemap: `https://flynnjamespontino-porfolio.onrender.com/sitemap.xml`
+
+Crawler rules: `https://flynnjamespontino-porfolio.onrender.com/robots.txt`
+
 ## Render deployment
 
 The included `render.yaml` is configured for a Render Static Site:
@@ -50,7 +56,9 @@ The included `render.yaml` is configured for a Render Static Site:
 - Sitemap and robots.txt
 - Semantic navigation links with SPA navigation preserved
 - Descriptive image alt text and explicit image dimensions where applicable
-- Responsive page-photo backgrounds with focal positioning and readable overlays
+- Responsive page-photo backgrounds with page-specific focal positioning, stronger image visibility, and readable content overlays
+- Consistent homepage-style navigation on every route without a redundant visible breadcrumb bar
+- Custom SVG favicon and updated Render-domain canonical/structured-data URLs
 - Lightweight transform-only ambient animation with `prefers-reduced-motion` support
 - No additional runtime dependencies added
 - Long-lived immutable caching for built assets on Render

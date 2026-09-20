@@ -6,10 +6,4 @@ Disallow: /*?ref=
 Disallow: /*?session=
 Disallow: /api/
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-Sitemap: https://flynnjames.com/sitemap.xml
+Sitemap: https://flynnjamespontino-porfolio.onrender.com/sitemap.xml

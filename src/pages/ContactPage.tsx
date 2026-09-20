@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Linkedin, FileText, Send, CheckCircle2, Copy, ExternalLink, Clock, Shield } from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
@@ -27,7 +27,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
   const [copied, setCopied] = useState(false);
 
   useSEO({
-    title: 'Contact Flynn James — Book a B2B Outbound Strategy Call',
+    title: 'Contact Flynn James | Hire a B2B SDR & Appointment Setter',
     description:
       'Get in touch with Flynn James for B2B appointment setting, cold calling, or SDR coaching. Free 20-minute pipeline audit. Response within 24 hours.',
     canonical: '/contact',
@@ -38,7 +38,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
         '@type': 'ContactPage',
         name: 'Contact Flynn James',
         description: 'Contact page for booking a B2B outbound strategy call with Flynn James.',
-        url: 'https://flynnjames.com/contact',
+        url: 'https://flynnjamespontino-porfolio.onrender.com/contact',
         mainEntity: {
           '@type': 'Person',
           name: 'Flynn James Q. Pontino',

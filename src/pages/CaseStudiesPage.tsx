@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
@@ -15,7 +15,7 @@ interface CaseStudiesPageProps {
 
 export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ onSelectCaseStudy }) => {
   useSEO({
-    title: 'B2B Sales Case Studies — $1.8M+ Pipeline Sourced',
+    title: 'B2B Sales Case Studies | Appointment Setting & Outbound Results',
     description:
       'Detailed case studies of B2B outbound campaigns: $1.8M pipeline sourced for a UK agency, 22% demo conversion for enterprise SaaS, and Level 4 ramp in 3 weeks.',
     canonical: '/case-studies',
@@ -33,7 +33,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ onSelectCaseSt
         position: i + 1,
         name: cs.title,
         description: cs.challenge.slice(0, 160),
-        url: `https://flynnjames.com/case-studies#${cs.id}`,
+        url: `https://flynnjamespontino-porfolio.onrender.com/case-studies#${cs.id}`,
       })),
     },
   });

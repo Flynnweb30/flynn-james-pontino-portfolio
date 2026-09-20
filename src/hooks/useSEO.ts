@@ -11,8 +11,8 @@ interface SEOConfig {
   noindex?: boolean;
 }
 
-const SITE = 'https://flynnjames.com';
-const DEFAULT_OG = `${SITE}/og/flynn-james-b2b-sdr.jpg`;
+const SITE = 'https://flynnjamespontino-porfolio.onrender.com';
+const DEFAULT_OG = 'https://user29984.na.imgto.link/public/20260907/flynn-profile.avif';
 
 function setMeta(selector: string, attr: string, value: string, create = false) {
   let el = document.head.querySelector(selector) as HTMLMetaElement | HTMLLinkElement | null;
@@ -112,22 +112,22 @@ export function useSEO(config: SEOConfig) {
 
 export const SEO_CONFIGS = {
   home: {
-    title: 'Flynn James — B2B Appointment Setting & Cold Calling Specialist',
+    title: 'Flynn James | B2B SDR, Appointment Setter & Cold Calling Specialist',
     description:
-      'Senior B2B SDR with 11+ years of outbound experience. $1.8M+ pipeline sourced and 30+ qualified meetings booked monthly for SaaS, agencies, and IT firms.',
+      'Hire Flynn James for B2B appointment setting, cold calling, lead generation, and SDR support. 11+ years of outbound sales experience across US, UK, Australia, and Singapore.',
     canonical: '/',
     keywords:
       'B2B appointment setting, cold calling specialist, SDR, lead generation, outbound sales, B2B sales development',
   },
   about: {
-    title: 'About Flynn James — 11+ Years in B2B Outbound Sales',
+    title: 'About Flynn James | 11+ Years in B2B Outbound Sales',
     description:
       'Meet Flynn James, a Senior B2B SDR and Junior Sales Team Lead with 11+ years of cold calling, appointment setting, and SDR coaching experience.',
     canonical: '/about',
     keywords: 'about Flynn James, B2B sales specialist, SDR background, outbound sales expert',
   },
   services: {
-    title: 'B2B Sales Services — Appointment Setting & Cold Calling',
+    title: 'B2B Appointment Setting & Cold Calling Services | Flynn James',
     description:
       'Six focused B2B outbound services: appointment setting, high-volume cold calling, lead generation, SDR coaching, LinkedIn outreach, and CRM pipeline management.',
     canonical: '/services',
@@ -135,14 +135,14 @@ export const SEO_CONFIGS = {
       'B2B appointment setting services, cold calling services, lead generation services, SDR services, outbound sales services',
   },
   experience: {
-    title: 'Career Timeline — 11+ Years of B2B Sales Development',
+    title: 'Flynn James B2B Sales Experience | 11+ Years of SDR & Outbound Sales',
     description:
       'Flynn James career timeline: 11+ years of outbound sales across US, UK, ANZ, and Singapore markets. Consistent 120–150% quota attainment.',
     canonical: '/experience',
     keywords: 'B2B sales career, SDR experience, appointment setting background, outbound sales history',
   },
   caseStudies: {
-    title: 'B2B Sales Case Studies — $1.8M+ Pipeline Sourced',
+    title: 'B2B Sales Case Studies | Appointment Setting & Outbound Results',
     description:
       'Detailed case studies of outbound campaigns: $1.8M pipeline sourced for a UK agency, 22% demo conversion for enterprise SaaS, and Level 4 ramp in 3 weeks.',
     canonical: '/case-studies',
@@ -150,14 +150,14 @@ export const SEO_CONFIGS = {
       'B2B sales case studies, appointment setting results, cold calling case studies, outbound pipeline results',
   },
   samples: {
-    title: 'Sales Playbooks & Cold Call Scripts — Flynn James',
+    title: 'B2B Cold Call Scripts & Sales Playbooks | Flynn James',
     description:
       'Free sales playbooks: cold call scripts, 7-touch multi-channel cadences, BANT qualification scorecards, and AE handoff templates used to source $1.8M+ pipeline.',
     canonical: '/samples',
     keywords: 'cold call scripts, sales playbook, B2B cadence template, BANT qualification, SDR scripts',
   },
   contact: {
-    title: 'Contact Flynn James — Book a B2B Outbound Strategy Call',
+    title: 'Contact Flynn James | Hire a B2B SDR & Appointment Setter',
     description:
       'Get in touch with Flynn James for B2B appointment setting, cold calling, or SDR coaching. Free 20-minute pipeline audit. Response within 24 hours.',
     canonical: '/contact',

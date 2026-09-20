@@ -23,7 +23,7 @@ export function breadcrumbSchema(crumbs: BreadcrumbItem[]) {
       '@type': 'ListItem',
       position: i + 1,
       name: c.name || c.label || '',
-      item: `https://flynnjames.com${c.url || c.href || ''}`,
+      item: `https://flynnjamespontino-porfolio.onrender.com${c.url || c.href || ''}`,
     })),
   };
 }

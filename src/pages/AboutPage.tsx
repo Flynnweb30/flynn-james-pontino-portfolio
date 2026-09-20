@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Target, Headphones, Shield, Flame, Briefcase, GraduationCap, Globe } from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
@@ -54,7 +54,7 @@ const EXPERTISE = [
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact }) => {
   useSEO({
-    title: 'About Flynn James — 11+ Years in B2B Outbound Sales',
+    title: 'About Flynn James | 11+ Years in B2B Outbound Sales',
     description:
       'Meet Flynn James, a Senior B2B SDR and Junior Sales Team Lead with 11+ years of cold calling, appointment setting, and SDR coaching experience.',
     canonical: '/about',
@@ -70,7 +70,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
         alternateName: 'Flynn James',
         jobTitle: 'Senior B2B SDR & Junior Sales Team Lead',
         description: 'Senior B2B Sales Development Representative with 11+ years of outbound experience.',
-        url: 'https://flynnjames.com/about',
+        url: 'https://flynnjamespontino-porfolio.onrender.com/about',
         email: 'va.flynnjames@gmail.com',
         telephone: '+63-930-635-9306',
         image: 'https://user29984.na.imgto.link/public/20260907/flynn-profile.avif',

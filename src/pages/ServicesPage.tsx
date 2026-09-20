@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
@@ -26,7 +26,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onSelectService, onO
       provider: {
         '@type': 'Person',
         name: 'Flynn James Q. Pontino',
-        url: 'https://flynnjames.com',
+        url: 'https://flynnjamespontino-porfolio.onrender.com',
       },
       areaServed: ['US', 'GB', 'AU', 'CA', 'SG'],
       serviceType: activeService.title,
