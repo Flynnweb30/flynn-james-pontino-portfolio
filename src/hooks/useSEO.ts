@@ -114,7 +114,7 @@ export const SEO_CONFIGS = {
   home: {
     title: 'Flynn James | B2B SDR, Appointment Setter & Cold Calling Specialist',
     description:
-      'Hire Flynn James for B2B appointment setting, cold calling, lead generation, and SDR support. 11+ years of outbound sales experience across US, UK, Australia, and Singapore.',
+      'Hire Flynn James for B2B appointment setting, cold calling, lead generation, and SDR support. 11+ years of outbound sales experience helping B2B teams create qualified conversations across the US, UK, Australia, and Singapore.',
     canonical: '/',
     keywords:
       'B2B appointment setting, cold calling specialist, SDR, lead generation, outbound sales, B2B sales development',
@@ -159,7 +159,7 @@ export const SEO_CONFIGS = {
   contact: {
     title: 'Contact Flynn James | Hire a B2B SDR & Appointment Setter',
     description:
-      'Get in touch with Flynn James for B2B appointment setting, cold calling, or SDR coaching. Free 20-minute pipeline audit. Response within 24 hours.',
+      'Book a free 20-minute B2B pipeline audit with Flynn James for appointment setting, cold calling, or SDR support. Bring your ICP, current outbound motion, and bottleneck; get practical next steps within one working session.',
     canonical: '/contact',
     keywords: 'hire B2B SDR, book appointment setter, contact sales specialist, hire cold caller',
   },

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowUpRight,
@@ -240,6 +240,36 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className="text-[11.5px] text-slate-500 mt-2 font-mono uppercase tracking-wider">{s.l}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── LEAD MAGNET: FREE PIPELINE AUDIT ── */}
+      <section id="free-pipeline-audit" className="border-b border-slate-800/60 bg-slate-900/45">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-10 sm:py-12">
+          <div className="rounded-2xl border border-amber-400/20 bg-[#0b0f19]/80 backdrop-blur-sm p-6 sm:p-8 lg:p-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-7">
+            <div className="max-w-3xl">
+              <div className="text-[10.5px] font-mono text-amber-400 uppercase tracking-wider mb-2">Free B2B pipeline audit</div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Find the leak in your outbound motion before you spend more on leads.
+              </h2>
+              <p className="mt-3 text-[14px] sm:text-[15px] text-slate-400 leading-relaxed">
+                Bring your ICP, current script, targeting process, and recent outbound numbers. In 20 minutes, we'll identify practical gaps in targeting, conversations, qualification, or follow-up and map the next step.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[11.5px] font-mono text-slate-500">
+                <span>ICP + targeting review</span>
+                <span>•</span>
+                <span>Script + objection check</span>
+                <span>•</span>
+                <span>Follow-up + show-rate review</span>
+              </div>
+            </div>
+            <div className="shrink-0">
+              <Button variant="primary" size="lg" onClick={() => onOpenContact()} className="group w-full sm:w-auto">
+                <PhoneCall className="w-4 h-4" />
+                Claim the free audit
+              </Button>
+            </div>
           </div>
         </div>
       </section>

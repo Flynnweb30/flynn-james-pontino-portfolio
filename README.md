@@ -66,3 +66,12 @@ The included `render.yaml` is configured for a Render Static Site:
 ## Routing
 
 The app uses the History API for clean production URLs while continuing to understand legacy `#/...` links. Render's SPA rewrite serves `index.html` for direct route requests and refreshes.
+
+
+## Google Search Console
+
+Production sitemap: `https://flynnjamespontino-porfolio.onrender.com/sitemap.xml`
+
+Production robots file: `https://flynnjamespontino-porfolio.onrender.com/robots.txt`
+
+Use a URL-prefix Search Console property for `https://flynnjamespontino-porfolio.onrender.com/`, verify ownership, deploy the latest build, then submit `sitemap.xml`. The build now validates that the sitemap and robots files are copied into `dist/` before deployment completes.
