@@ -5,9 +5,10 @@ import { PageId } from '../types';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
+  onOpenBooking: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   const navItems: { label: string; page: PageId }[] = [
@@ -124,6 +125,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               >
                 {PERSONAL_INFO.phone}
               </a>
+              <button
+                type="button"
+                onClick={onOpenBooking}
+                className="block text-left text-blue-300 hover:text-white transition-colors font-medium"
+              >
+                Book a strategy call →
+              </button>
               <div className="text-slate-500 pt-1">Remote · Global</div>
             </div>
           </div>

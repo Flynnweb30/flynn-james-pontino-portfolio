@@ -112,12 +112,12 @@ export function useSEO(config: SEOConfig) {
 
 export const SEO_CONFIGS = {
   home: {
-    title: 'Flynn James | B2B SDR, Appointment Setter & Cold Calling Specialist',
+    title: 'Flynn James | Senior B2B SDR & Junior Sales Team Lead',
     description:
-      'Hire Flynn James for B2B appointment setting, cold calling, lead generation, and SDR support. 11+ years of outbound sales experience helping B2B teams create qualified conversations across the US, UK, Australia, and Singapore.',
+      'Senior B2B SDR and Junior Sales Team Lead helping HR teams, business owners, and startups build qualified pipeline through appointment setting, cold calling, and SDR coaching.',
     canonical: '/',
     keywords:
-      'B2B appointment setting, cold calling specialist, SDR, lead generation, outbound sales, B2B sales development',
+      'Senior B2B SDR, Junior Sales Team Lead, B2B appointment setting, cold calling, lead generation, outbound sales, SDR coaching',
   },
   about: {
     title: 'About Flynn James | 11+ Years in B2B Outbound Sales',

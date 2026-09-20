@@ -3,6 +3,19 @@
 @layer base {
   :root {
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --bg-base: #0b0f19;
+    --bg-elevated: #111827;
+    --ink-primary: #f8fafc;
+    --ink-secondary: #cbd5e1;
+    --ink-tertiary: #94a3b8;
+    --ink-quaternary: #64748b;
+    --border-default: rgba(71, 85, 105, 0.72);
+    --border-subtle: rgba(51, 65, 85, 0.65);
+    --accent-primary: #2563eb;
+    --accent-hover: #3b82f6;
+    --success: #2dd4bf;
+    --success-subtle: rgba(45, 212, 191, 0.10);
+    --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.45);
     --font-serif: 'Instrument Serif', Georgia, serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
@@ -391,4 +404,52 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .site-toast { transition: none; }
+}
+
+
+/* ── High-conversion portfolio accents ── */
+.hero-gradient {
+  background:
+    radial-gradient(circle at 72% 20%, rgba(37, 99, 235, 0.18), transparent 34%),
+    radial-gradient(circle at 88% 62%, rgba(20, 184, 166, 0.12), transparent 30%),
+    linear-gradient(90deg, rgba(11, 15, 25, 0.14), rgba(11, 15, 25, 0.02));
+}
+.hero-gradient-text {
+  background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 48%, #2dd4bf 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.ghl-cta-primary {
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%) !important;
+  color: #111827 !important;
+  box-shadow: 0 12px 30px rgba(249, 115, 22, 0.18);
+}
+.ghl-cta-primary:hover {
+  filter: brightness(1.06);
+}
+.dashboard-card {
+  min-height: 112px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(71, 85, 105, 0.45);
+  background: rgba(15, 23, 42, 0.72);
+}
+.dashboard-blue { border-color: rgba(59, 130, 246, 0.22); }
+.dashboard-purple { border-color: rgba(139, 92, 246, 0.22); }
+.dashboard-teal { border-color: rgba(45, 212, 191, 0.22); }
+.dashboard-orange { border-color: rgba(249, 115, 22, 0.22); }
+.dashboard-chart::before {
+  content: '';
+  position: absolute;
+  inset: 22% 4% 22% 4%;
+  background: linear-gradient(135deg, transparent 0 6%, rgba(59,130,246,.05) 6% 7%, transparent 7% 18%, rgba(139,92,246,.07) 18% 19%, transparent 19% 34%, rgba(45,212,191,.08) 34% 35%, transparent 35% 48%, rgba(59,130,246,.11) 48% 49%, transparent 49% 63%, rgba(45,212,191,.14) 63% 64%, transparent 64% 78%, rgba(249,115,22,.18) 78% 79%, transparent 79%);
+  clip-path: polygon(0 82%, 12% 76%, 24% 80%, 36% 55%, 48% 62%, 60% 40%, 72% 44%, 84% 20%, 100% 5%, 100% 100%, 0 100%);
+  border-bottom: 1px solid rgba(45, 212, 191, 0.35);
+}
+.calendar-widget-shell {
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.35);
+}
+@media (max-width: 640px) {
+  .dashboard-card { min-height: 104px; }
 }

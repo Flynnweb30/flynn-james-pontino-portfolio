@@ -9,6 +9,7 @@ interface NavbarProps {
   currentPage: PageId;
   onNavigate: (page: PageId) => void;
   onOpenContact: () => void;
+  onOpenBooking: () => void;
 }
 
 const NAV_ITEMS: { label: string; page: PageId; index: string; ariaLabel: string }[] = [
@@ -22,7 +23,7 @@ const NAV_ITEMS: { label: string; page: PageId; index: string; ariaLabel: string
   { label: 'Contact', page: 'contact', index: '08', ariaLabel: 'Contact Flynn James' },
 ];
 
-export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenContact }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenContact, onOpenBooking }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -108,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenC
               </a>
 
               <button
-                onClick={onOpenContact}
+                onClick={onOpenBooking}
                 aria-label="Book a strategy call"
                 className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-[12.5px] font-semibold text-slate-900 bg-amber-400 hover:bg-amber-300 rounded-md transition-colors"
               >
@@ -192,7 +193,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenC
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onOpenContact();
+                    onOpenBooking();
                   }}
                   className="w-full flex items-center justify-center gap-2 py-3 text-[13px] font-semibold text-slate-900 bg-amber-400 hover:bg-amber-300 rounded-lg transition-colors"
                 >
