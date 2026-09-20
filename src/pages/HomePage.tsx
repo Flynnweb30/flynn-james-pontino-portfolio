@@ -21,6 +21,8 @@ import { Section } from '../components/Section';
 import { SectionHeading } from '../components/SectionHeading';
 import { Button } from '../components/Button';
 import { OptimizedImage } from '../components/OptimizedImage';
+import { ConversionSections } from '../components/ConversionSections';
+import { BookingModal } from '../components/BookingModal';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
@@ -50,6 +52,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   React.useEffect(() => {
     const handleInquirySuccess = () => {
@@ -103,9 +106,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                 transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="mt-8 text-[40px] sm:text-[56px] lg:text-[68px] font-bold text-white leading-[1.02] tracking-tight"
               >
-                B2B appointment setting
+                I turn conversations into
                 <br />
-                <span className="font-serif italic text-amber-400/90">that actually converts.</span>
+                <span className="font-serif italic text-amber-400/90">qualified opportunities.</span>
               </motion.h1>
 
               <motion.p
@@ -246,7 +249,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* ── LEAD MAGNET: FREE PIPELINE AUDIT ── */}
+      <ConversionSections onNavigate={onNavigate} onOpenContact={onOpenContact} onOpenBooking={() => setBookingOpen(true)} />
+
+      {/* ── LEAD MAGNET: FREE PIPELINE AUDIT ── */
       <section id="free-pipeline-audit" className="border-b border-slate-800/60 bg-slate-900/45">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-10 sm:py-12">
           <div className="rounded-2xl border border-amber-400/20 bg-[#0b0f19]/80 backdrop-blur-sm p-6 sm:p-8 lg:p-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-7">
@@ -860,6 +865,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
         </motion.div>
       </Section>
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   );
 };
