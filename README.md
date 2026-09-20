@@ -75,3 +75,7 @@ Production sitemap: `https://flynnjamespontino-porfolio.onrender.com/sitemap.xml
 Production robots file: `https://flynnjamespontino-porfolio.onrender.com/robots.txt`
 
 Use a URL-prefix Search Console property for `https://flynnjamespontino-porfolio.onrender.com/`, verify ownership, deploy the latest build, then submit `sitemap.xml`. The build now validates that the sitemap and robots files are copied into `dist/` before deployment completes.
+
+## Blog
+
+The portfolio includes a crawlable `/blog` hub plus five evergreen B2B outbound articles covering cold calling, appointment setting KPIs, cadences, meeting show rates, and SDR hiring.

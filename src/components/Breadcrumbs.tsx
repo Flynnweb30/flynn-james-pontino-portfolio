@@ -13,7 +13,6 @@ interface BreadcrumbsProps {
   items?: BreadcrumbItem[];
   crumbs?: BreadcrumbItem[];
   onNavigate?: (page: PageId) => void;
-  onNavigateService?: (slug: string) => void;
 }
 
 export function breadcrumbSchema(crumbs: BreadcrumbItem[]) {
@@ -29,14 +28,14 @@ export function breadcrumbSchema(crumbs: BreadcrumbItem[]) {
   };
 }
 
-export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, crumbs, onNavigate, onNavigateService }) => {
+export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, crumbs, onNavigate }) => {
   const list = items || crumbs;
   if (!list || list.length === 0) return null;
 
   return (
     <nav aria-label="Breadcrumb" className="border-b border-slate-800/60 bg-slate-950/40 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 breadcrumb-mobile-scroll">
-        <ol className="flex items-center gap-2 py-3 text-[11.5px] font-mono text-slate-500 whitespace-nowrap min-w-max">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        <ol className="flex items-center gap-2 py-3 text-[11.5px] font-mono text-slate-500">
           {list.map((item, idx) => {
             const isLast = idx === list.length - 1;
             const name = item.name || item.label || '';
@@ -47,16 +46,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, crumbs, onNavig
                   <>
                     <a
                       href={item.url || '/'}
-                      onClick={(e) => {
-                        const href = item.url || item.href || '/';
-                        if (href.startsWith('/services/') && onNavigateService) {
-                          e.preventDefault();
-                          onNavigateService(href.split('/').filter(Boolean)[1] || '');
-                        } else if (href === '/' || /^\/(about|services|experience|case-studies|samples|contact)$/.test(href)) {
-                          e.preventDefault();
-                          onNavigate?.((href === '/' ? 'home' : href.slice(1)) as PageId);
-                        }
-                      }}
+                      onClick={(e) => { e.preventDefault(); onNavigate?.('home'); }}
                       className="hover:text-amber-400 transition-colors uppercase tracking-wider"
                     >
                       {name}

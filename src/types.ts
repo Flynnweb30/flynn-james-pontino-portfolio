@@ -94,4 +94,4 @@ export interface WorkSample {
   };
 }
 
-export type PageId = 'home' | 'about' | 'services' | 'experience' | 'case-studies' | 'samples' | 'contact';
+export type PageId = 'home' | 'about' | 'services' | 'experience' | 'case-studies' | 'samples' | 'blog' | 'contact';

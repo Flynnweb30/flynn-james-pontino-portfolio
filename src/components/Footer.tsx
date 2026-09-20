@@ -17,6 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     { label: 'Experience', page: 'experience' },
     { label: 'Case Studies', page: 'case-studies' },
     { label: 'Playbooks', page: 'samples' },
+    { label: 'Blog', page: 'blog' },
     { label: 'Contact', page: 'contact' },
   ];
 
@@ -129,7 +130,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         <div className="mt-14 pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-[11.5px] font-mono text-slate-600">
+          <div className="footer-copy text-[11.5px] font-mono text-slate-600">
             © {new Date().getFullYear()} {PERSONAL_INFO.name} · All rights reserved
           </div>
           <button

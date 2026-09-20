@@ -46,6 +46,14 @@ export const SEO_DATA: Record<string, SEOMetadata> = {
     canonical: `${SITE_URL}/case-studies`,
     ogImage: DEFAULT_OG,
   },
+  blog: {
+    title: 'B2B SDR Blog | Cold Calling, Appointment Setting & Outbound Sales',
+    description: 'Practical B2B sales insights from Flynn James on cold calling, appointment setting, SDR metrics, outbound cadences, meeting quality, and hiring setters.',
+    canonical: `${SITE_URL}/blog`,
+    ogImage: DEFAULT_OG,
+    ogType: 'website',
+    keywords: ['B2B SDR blog', 'cold calling tips', 'appointment setting tips', 'outbound sales strategy', 'SDR metrics'],
+  },
   samples: {
     title: 'B2B Cold Call Scripts & Sales Playbooks | Flynn James',
     description: 'The exact cold call scripts, 7-touch cadences, BANT scorecards, and AE handoff templates used to generate $1.8M+ pipeline. Free to download.',

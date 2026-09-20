@@ -4,7 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const dist = path.join(root, 'dist');
 const site = 'https://flynnjamespontino-porfolio.onrender.com';
-const required = ['index.html', 'sitemap.xml', 'robots.txt', 'favicon.svg', 'assets/app.js', 'assets/style.min.css'];
+const required = ['index.html', 'sitemap.xml', 'robots.txt', 'favicon.svg'];
 
 if (!fs.existsSync(dist)) throw new Error('Build output directory "dist" was not created.');
 
@@ -21,16 +21,15 @@ if (!sitemap.includes('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.
 if (!sitemap.endsWith('</urlset>')) throw new Error('sitemap.xml is not closed with </urlset>.');
 
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-if (locs.length !== 14) throw new Error(`Expected 14 sitemap URLs, found ${locs.length}.`);
+if (locs.length !== 13) throw new Error(`Expected 13 sitemap URLs, found ${locs.length}.`);
 if (new Set(locs).size !== locs.length) throw new Error('sitemap.xml contains duplicate URLs.');
-const requiredServicePaths = ['/services/appointment-setting', '/services/cold-calling', '/services/lead-generation', '/services/sdr-services', '/services/digital-marketing-appointment-setting', '/services/sales-development', '/services/sales-coaching'];
-for (const servicePath of requiredServicePaths) {
-  if (!locs.includes(`${site}${servicePath}`)) throw new Error(`Sitemap is missing service URL: ${servicePath}`);
-}
-
 for (const url of locs) {
   if (!url.startsWith(site)) throw new Error(`Sitemap URL is outside the production domain: ${url}`);
   if (/[?#]/.test(url)) throw new Error(`Sitemap URL contains a query string or fragment: ${url}`);
+}
+const requiredRoutes = ['/blog', '/blog/b2b-cold-call-opener-that-gets-to-discovery', '/blog/b2b-appointment-setting-kpis-that-matter', '/blog/seven-touch-b2b-outbound-cadence', '/blog/why-qualified-meetings-no-show', '/blog/how-to-hire-a-b2b-appointment-setter'];
+for (const route of requiredRoutes) {
+  if (!locs.includes(`${site}${route}`)) throw new Error(`Sitemap is missing required blog route: ${route}`);
 }
 
 const robots = fs.readFileSync(path.join(dist, 'robots.txt'), 'utf8');

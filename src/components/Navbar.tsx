@@ -3,6 +3,7 @@ import { Menu, X, PhoneCall, FileText, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { PageId } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
+import { debounce } from '../analytics';
 
 interface NavbarProps {
   currentPage: PageId;
@@ -17,7 +18,8 @@ const NAV_ITEMS: { label: string; page: PageId; index: string; ariaLabel: string
   { label: 'Experience', page: 'experience', index: '04', ariaLabel: 'Career timeline' },
   { label: 'Case Studies', page: 'case-studies', index: '05', ariaLabel: 'B2B sales case studies' },
   { label: 'Playbooks', page: 'samples', index: '06', ariaLabel: 'Sales playbooks and scripts' },
-  { label: 'Contact', page: 'contact', index: '07', ariaLabel: 'Contact Flynn James' },
+  { label: 'Blog', page: 'blog', index: '07', ariaLabel: 'B2B sales and outbound insights blog' },
+  { label: 'Contact', page: 'contact', index: '08', ariaLabel: 'Contact Flynn James' },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenContact }) => {
@@ -25,7 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenC
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 16);
+    const handleScroll = debounce(() => setIsScrolled(window.scrollY > 16), 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -45,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenC
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`navbar fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? 'bg-[#0b0f19]/92 backdrop-blur-xl border-b border-slate-800/70 shadow-lg shadow-black/30'
             : 'bg-transparent border-b border-transparent'

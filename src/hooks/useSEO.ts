@@ -11,7 +11,7 @@ interface SEOConfig {
   noindex?: boolean;
 }
 
-export const SITE_URL = 'https://flynnjamespontino-porfolio.onrender.com';
+const SITE = 'https://flynnjamespontino-porfolio.onrender.com';
 const DEFAULT_OG = 'https://user29984.na.imgto.link/public/20260907/flynn-profile.avif';
 
 function setMeta(selector: string, attr: string, value: string, create = false) {
@@ -53,7 +53,7 @@ export function useSEO(config: SEOConfig) {
     setMeta(
       'link[rel="canonical"]',
       'href',
-      config.canonical.startsWith('http') ? config.canonical : `${SITE_URL}${config.canonical}`,
+      config.canonical.startsWith('http') ? config.canonical : `${SITE}${config.canonical}`,
       true,
     );
 
@@ -62,7 +62,7 @@ export function useSEO(config: SEOConfig) {
     setMeta(
       'meta[property="og:url"]',
       'content',
-      config.canonical.startsWith('http') ? config.canonical : `${SITE_URL}${config.canonical}`,
+      config.canonical.startsWith('http') ? config.canonical : `${SITE}${config.canonical}`,
       true,
     );
     setMeta('meta[property="og:type"]', 'content', config.ogType || 'website', true);
@@ -85,11 +85,11 @@ export function useSEO(config: SEOConfig) {
     schemas.push({
       '@context': 'https://schema.org',
       '@type': config.ogType === 'profile' ? 'ProfilePage' : 'WebPage',
-      '@id': `${config.canonical.startsWith('http') ? config.canonical : `${SITE_URL}${config.canonical}`}#webpage`,
-      url: config.canonical.startsWith('http') ? config.canonical : `${SITE_URL}${config.canonical}`,
+      '@id': `${config.canonical.startsWith('http') ? config.canonical : `${SITE}${config.canonical}`}#webpage`,
+      url: config.canonical.startsWith('http') ? config.canonical : `${SITE}${config.canonical}`,
       name: config.title,
       description: config.description,
-      isPartOf: { '@id': `${SITE_URL}/#website` },
+      isPartOf: { '@id': `${SITE}/#website` },
       inLanguage: 'en-US'
     });
     schemas.forEach((schema) => {
@@ -148,6 +148,14 @@ export const SEO_CONFIGS = {
     canonical: '/case-studies',
     keywords:
       'B2B sales case studies, appointment setting results, cold calling case studies, outbound pipeline results',
+  },
+  blog: {
+    title: 'B2B SDR Blog | Cold Calling, Appointment Setting & Outbound Sales',
+    description:
+      'Practical B2B sales insights from Flynn James on cold calling, appointment setting, SDR metrics, outbound cadences, meeting quality, and hiring setters.',
+    canonical: '/blog',
+    keywords:
+      'B2B SDR blog, cold calling tips, appointment setting tips, outbound sales strategy, SDR metrics, sales development',
   },
   samples: {
     title: 'B2B Cold Call Scripts & Sales Playbooks | Flynn James',

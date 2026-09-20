@@ -17,6 +17,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
     name: '',
     email: '',
     company: '',
+    phone: '',
     serviceNeeded: initialService || 'B2B Appointment Setting',
     targetMarket: 'United States',
     meetingTarget: '25-35 Meetings/Mo',
@@ -87,6 +88,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
     ],
   });
 
+  React.useEffect(() => {
+    const handleInquirySuccess = () => {
+      setFormData({ name: '', email: '', company: '', phone: '', serviceNeeded: initialService || 'B2B Appointment Setting', targetMarket: 'United States', meetingTarget: '25-35 Meetings/Mo', message: '' });
+      setSubmitted(true);
+    };
+    window.addEventListener('flynn:inquiry-success', handleInquirySuccess);
+    return () => window.removeEventListener('flynn:inquiry-success', handleInquirySuccess);
+  }, [initialService]);
+
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
     setCopied(true);
@@ -94,15 +104,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      onSuccessToast?.('Message sent — expect a reply within 24 hours.');
-    }, 900);
-  };
+  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); };
 
   const inputCls =
     'w-full px-3.5 py-2.5 text-[15px] sm:text-[13.5px] bg-[#0b0f19] border border-slate-800 rounded-lg text-white placeholder-slate-600 focus:outline-none focus:border-amber-400/60 transition-colors';
@@ -311,7 +313,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} data-inquiry-form data-form-name="contact" className="space-y-5">
                   <div className="pb-5 border-b border-slate-800/60">
                     <h2 className="text-[18px] font-semibold text-white">Send a message</h2>
                     <p className="text-[12.5px] text-slate-500 mt-1.5">All information is confidential.</p>
@@ -324,6 +326,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                       </label>
                       <input
                         id="contact-name"
+                        name="name"
                         type="text"
                         required
                         value={formData.name}
@@ -338,6 +341,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                       </label>
                       <input
                         id="contact-email"
+                        name="email"
                         type="email"
                         required
                         value={formData.email}
@@ -355,6 +359,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                       </label>
                       <input
                         id="contact-company"
+                        name="company"
                         type="text"
                         required
                         value={formData.company}
@@ -369,6 +374,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                       </label>
                       <select
                         id="contact-service"
+                        name="need"
                         value={formData.serviceNeeded}
                         onChange={(e) => setFormData({ ...formData, serviceNeeded: e.target.value })}
                         className={inputCls}
@@ -383,6 +389,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                     </div>
                   </div>
 
+                  <div>
+                    <label htmlFor="contact-phone" className={labelCls}>
+                      Phone / WhatsApp (optional)
+                    </label>
+                    <input
+                      id="contact-phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone || ''}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="+1 555 123 4567"
+                      className={inputCls}
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="contact-market" className={labelCls}>
@@ -390,6 +411,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                       </label>
                       <select
                         id="contact-market"
+                        name="targetMarket"
                         value={formData.targetMarket}
                         onChange={(e) => setFormData({ ...formData, targetMarket: e.target.value })}
                         className={inputCls}
@@ -408,6 +430,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                       </label>
                       <select
                         id="contact-target"
+                        name="meetingTarget"
                         value={formData.meetingTarget}
                         onChange={(e) => setFormData({ ...formData, meetingTarget: e.target.value })}
                         className={inputCls}
@@ -426,6 +449,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialService, onSucc
                     </label>
                     <textarea
                       id="contact-message"
+                      name="message"
                       required
                       rows={5}
                       value={formData.message}
